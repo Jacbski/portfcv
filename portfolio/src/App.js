@@ -1,51 +1,58 @@
-import './App.css';
+import './css/App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import About from './webs/About';
+import Projects from './webs/Projects';
+import Home from './webs/Home';
 
 function App() {
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Navbar expand="lg" className="Navbar">
+            <Container>
+              <Navbar.Brand as={Link} to="/" style={{color:'white',fontSize:"30px"}}>JŁ</Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="ms-auto">
+                  <Nav.Link as={Link} to="/">Home</Nav.Link>
+                  <Nav.Link as={Link} to="/about">About</Nav.Link>
+                  <Nav.Link as={Link} to="/projects">Projects</Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+        </header>
 
-      <header className="App-header">
-        <Navbar expand="lg" className="bg-body-tertiary">
-          <Container>
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="ms-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#about">About</Nav.Link>
-                <Nav.Link href="#projets">Projects</Nav.Link>
-                <Nav.Link href="#resume">Resume</Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      </header>
+        <div className="App-content">
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path='/projects' element={<Projects />} />
+          </Routes>
+        </div>
 
-      <section className='intro'>
-        <h1>HI!</h1>
-        <p>I'm <b>Jakub Łada</b> </p>
-        <p>I am a student developing web applications and I want to become a DevOps engineer</p>
-      </section>
-
-      <secion className='quick'>
-        <p>
-          I enjoy programming and building web applications, but I still have a lot to learn. <br />
-          My main skills are JavaScript and Python. I am also learning about things like Docker, Jenkins, and Kubernetes. <br />
-          In my free time, I am learning how to build applications based on Node.js, React.js, and modern JavaScript frameworks.<br />
-        </p>
-      </secion>
-
-      <footer>
-        <p>Find me on</p>
-        <a href="https://github.com/Jacbski?tab=repositories" target="_blank" rel="noopener noreferrer">
-          <FaGithub size={50} color="black" /> 
-        </a>
-      </footer>
-    </div>
+        <footer>
+          <div className="footer-content">
+            <p>Made by: Jakub Łada</p>
+            <div>
+              <a href="https://github.com/Jacbski?tab=repositories" target="_blank" rel="noopener noreferrer">
+                <FaGithub size={20} />
+              </a>
+              <a href="https://www.linkedin.com/in/jakub-łada-3b67b230b/" target="_blank" rel="noopener noreferrer">
+                <FaLinkedin size={20} />
+              </a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </Router>
   );
 }
 
